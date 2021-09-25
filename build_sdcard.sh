@@ -39,16 +39,8 @@ fi
 # install needed frameworks and libraries on demand when activated by user.
 # Use 'false' if you want to run your node without: go, dot-net, nodejs, docker, ...
 
-fatpack="$2"
-if [ ${#fatpack} -eq 0 ]; then
-  fatpack="false"
-fi
-if [ "${fatpack}" != "true" ] && [ "${fatpack}" != "false" ]; then
-  echo "ERROR: FATPACK parameter needs to be either 'true' or 'false'"
-  exit 1
-else
-  echo "2) will use FATPACK --> '${fatpack}'"
-fi
+fatpack="true"
+echo "2) will use FATPACK --> '${fatpack}'"
 
 # 3rd optional parameter: GITHUB-USERNAME
 # ---------------------------------------
@@ -56,19 +48,13 @@ fi
 # The 'raspiblitz' repo of this user is used to provisioning sd card 
 # with raspiblitz assets/scripts later on.
 # If this parameter is set also the branch needs to be given (see next parameter).
-githubUser="$3"
-if [ ${#githubUser} -eq 0 ]; then
-  githubUser="rootzoll"
-fi
+githubUser="luisnaranjo733"
 echo "3) will use GITHUB-USERNAME --> '${githubUser}'"
 
 # 4th optional parameter: GITHUB-BRANCH
 # -------------------------------------
 # could be any valid branch of the given GITHUB-USERNAME forked raspiblitz repo - 'dev' is default
-githubBranch="$4"
-if [ ${#githubBranch} -eq 0 ]; then
-  githubBranch="dev"
-fi
+githubBranch="v1.7"
 echo "4) will use GITHUB-BRANCH --> '${githubBranch}'"
 
 # 5th optional parameter: DISPLAY-CLASS
@@ -76,16 +62,8 @@ echo "4) will use GITHUB-BRANCH --> '${githubBranch}'"
 # Could be 'hdmi', 'headless' or 'lcd'
 # On 'false' the standard video output is used (HDMI) by default.
 # https://github.com/rootzoll/raspiblitz/issues/1265#issuecomment-813369284
-displayClass="$5"
-if [ ${#displayClass} -eq 0 ] || [ "${displayClass}" == "false" ]; then
-  displayClass="hdmi"
-fi
-if [ "${displayClass}" != "hdmi" ] && [ "${displayClass}" != "lcd" ] && [ "${displayClass}" != "headless" ]; then
-  echo "ERROR: DISPLAY-CLASS parameter needs to be 'lcd', 'hdmi' or 'headless'"
-  exit 1
-else
-  echo "5) will use DISPLAY-CLASS --> '${displayClass}'"
-fi
+displayClass="headless"
+echo "5) will use DISPLAY-CLASS --> '${displayClass}'"
 
 # 6th optional parameter: TWEAK-BOOTDRIVE
 # ---------------------------------------
@@ -109,10 +87,7 @@ fi
 # If 'false' WIFI will be deactivated by default
 # If 'true' WIFI will be activated by with default country code 'US'
 # If any valid wifi country code Wifi will be activated with that country code by default
-modeWifi="$7"
-if [ ${#modeWifi} -eq 0 ] || [ "${modeWifi}" == "true" ]; then
-  modeWifi="US"
-fi
+modeWifi="false"
 echo "7) will use WIFI --> '${modeWifi}'"
 
 # AUTO-DETECTION: CPU-ARCHITECTURE
